@@ -19,7 +19,7 @@
       url = "github:input-output-hk/flake-compat/fixes";
       flake = false;
     };
-    customConfig = { url = "path:./custom-config"; };
+    # customConfig = { url = "path:./custom-config"; };
   };
 
   outputs = { self, iohkNix, cardano-world, haskellNix, nixpkgs, utils, customConfig, ... }:
@@ -32,6 +32,7 @@
       inherit (utils.lib) eachSystem mkApp flattenTree;
       inherit (iohkNix.lib) prefixNamesWith collectExes;
 
+      customConfig = ./custom-config;
       supportedSystems = import ./supported-systems.nix;
       defaultSystem = head supportedSystems;
 
